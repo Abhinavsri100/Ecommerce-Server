@@ -64,7 +64,7 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
         line_items: lineItems,
 
         mode: "payment",
-        success_url: `${CLIENT_BASE_URL}/#/payments/success`,
+        success_url: `${CLIENT_BASE_URL}/#/payments/success/`,
         cancel_url: `${CLIENT_BASE_URL}/#/payments/failed`,
       });
 
