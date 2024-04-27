@@ -7,6 +7,7 @@
 const { createCoreController } = require("@strapi/strapi").factories;
 // @ts-ignore
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+const CLIENT_BASE_URL = "http://localhost:3000";
 module.exports = createCoreController("api::order.order", ({ strapi }) => ({
   // Method 1: Creating an entirely custom action
   async customOrderController(ctx) {
@@ -63,8 +64,8 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
         line_items: lineItems,
 
         mode: "payment",
-        success_url: `${process.env.CLIENT_BASE_URL}/#/payments/success`,
-        cancel_url: `${process.env.CLIENT_BASE_URL}/#/payments/failed`,
+        success_url: `${CLIENT_BASE_URL}/#/payments/success`,
+        cancel_url: `${CLIENT_BASE_URL}/#/payments/failed`,
       });
 
       await strapi.entityService.create(`api::order.order`, {
